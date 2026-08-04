@@ -9,6 +9,6 @@ echo ===============
 set OsDirectory="Nil"
 set /p OsDirectory="what do you want to place the OS binary files? You: "
 set VIBE_DIR="%~dp0vibe"
-cd SyS/binary/
+cd SyS\binary\
 move "Bine.int" %OsDirectory%
 
