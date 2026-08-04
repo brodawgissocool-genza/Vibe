@@ -12,3 +12,5 @@ set VIBE_DIR="%~dp0vibe"
 cd SyS\binary\
 move "Bine.int" %OsDirectory%
 
+BannerModule
+
