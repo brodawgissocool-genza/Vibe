@@ -1,0 +1,7 @@
+// running shell version 00.01
+
+run Shell.bat
+<!---USER INFO---!>
+pass == "NIL"
+user == "FoxManDegga"
+Static.loads? <<True>>
