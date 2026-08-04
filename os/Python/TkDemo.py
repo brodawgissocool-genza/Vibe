@@ -1,42 +1,41 @@
 import tkinter as tk
 
-# --- 1. FILE READ & PARSING LOGIC ---
+# --- 1. INFO.REDIRECT PARSING LOGIC ---
 def verify_credentials_from_disk():
     target_user = ""
     target_pass = ""
     
-    # Reads your local configuration file line-by-line
-    # Make sure to update the path string to point to your exact file location
-    with open("SyS/binary/Info.redirect", "r") as file:
+    # Safely target your consolidated Info.redirect file
+    with open("os/TerminalShells/SyS/binary/Info.redirect", "r") as file:
         for line in file:
-            # Strip spaces/newlines and split values at the equals marker
             cleaned_line = line.strip()
+            
+            # Identify the key assignment line
             if "==" in cleaned_line:
                 key, value = cleaned_line.split("==", 1)
                 key = key.strip()
-                value = value.strip()
                 
-                # Assigns your file parameters directly to validation strings
-                if key == "User":
+                # Strip out the quotation marks surrounding your values
+                value = value.strip().replace('"', '')
+                
+                if key == "user":
                     target_user = value
-                elif key == "Pass":
+                elif key == "pass":
                     target_pass = value
                     
     return target_user, target_pass
 
 # --- 2. AUTHENTICATION ACTION ---
 def check_login():
-    # 1. Grab what the user currently typed into the GUI boxes
     entered_username = username_input.get()
     entered_password = password_input.get()
     
-    # 2. Dynamically pull the correct answers out of the configuration file
+    # Grab the exact strings dynamically from Info.redirect
     correct_user, correct_pass = verify_credentials_from_disk()
     
-    # 3. Perform the system matching loop validation
     if entered_username == correct_user and entered_password == correct_pass:
         status_label.config(text="Access Granted! Booting VibeOS...", fg="green")
-        # [Insert transition to main window here]
+        # [Your next screen transition will drop here]
     else:
         status_label.config(text="Invalid Credentials. Try again.", fg="red")
 
